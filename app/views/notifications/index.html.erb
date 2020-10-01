@@ -1,0 +1,10 @@
+<% provide(:title, "Notice") %>
+<h3 class="text-center">Notice</h3>
+<% notifications = @notifications.where.not(visitor_id: current_user.id)%>
+  <% if @notifications.exists? %>
+    <div class="notification-index">
+      <%= render @notifications %>
+    </div>
+  <% else %>
+    <p>No notice</p>
+  <% end %>

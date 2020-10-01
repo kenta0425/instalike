@@ -1,0 +1,43 @@
+<% if user_signed_in? %>
+  <div class="row">
+    <div class="feeds">
+      <% @feeds.each do |post| %>
+      <div class="card mb-4">
+        <div class="card-image">
+          <span class="user-name">
+            <%= link_to post.user.name, post.user %>
+          </span>
+          <figure class="image">
+              <%= image_tag post.image.variant(resize: '500x500') if post.image.attached? %>
+          </figure>
+          <div class="home-icons">
+            <div id="like-btn-<%= post.id %>">
+              <%= render 'likes/like', post: post %>
+            </div>
+            <div class="comment-icon">
+              <%= link_to [post], {class: "comment-a"} do %><i class="far fa-comment"></i><% end %>
+            </div>
+          </div>
+          
+          <div class="post-content">
+            <%= post.content %>
+          </div>
+          <span class="timestamp">
+            <%= time_ago_in_words(post.created_at) %> ago.
+          </span>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+
+  <div class="center jumbotron">
+    <h1>Welcome to the Instalike</h1>
+    
+    <h2>
+      This is the Instagram clone application for sub subject.
+    </h2>
+    
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>

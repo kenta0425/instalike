@@ -1,0 +1,14 @@
+<% provide(:title, "Comment") %>
+<div class="row">
+      <%= link_to @post.user.name, @post.user %>
+      <%= @post.content %>
+        <div id="comments_area">
+          <%= render partial: 'comments/index', locals: { comments: @comments } %>
+        </div>
+    <% if user_signed_in? %>
+        <div class="comment-create">
+            <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+        </div>
+    <% end %>
+    <%= link_to "back", :back %>
+</div>

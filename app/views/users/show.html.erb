@@ -1,0 +1,42 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <%= @user.profile %>
+      <% if current_user %>
+        <%= link_to "Edit Profile", edit_user_path(current_user) %>
+      <% else %>
+      <% end %>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <%= render 'follow_form' if user_signed_in? %>
+    <% if @user.posts.any? %>
+      <p>Posts (<%= @user.posts.count %>)</p>
+      <divl class="posts">
+        <% @myfeeds.each do |post| %>
+        <li id="post-<%= post.id %>">
+    <span class="content">
+      <!-- Button trigger modal -->
+      <button type="button" data-toggle="modal" data-target="#exampleModal-<%= post.id %>">
+        <%= image_tag post.image.variant(resize: '230x230') if post.image.attached? %>
+      </button>
+      
+      <% @post = post %>
+      <!-- Modal -->
+      <%= render 'posts/modal', post: @post %>
+    </span>
+    </li>
+    <% end %>
+      </divl>
+      <%= will_paginate @posts %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+    <span class="user-name">
+      <%= link_to @post.user.name, @post.user %>
+    </span>
+    <figure class="image">
+        <%= image_tag @post.image.variant(resize_to_fill: [300,300]) if @post.image.attached? %>
+    </figure>
+    <div class="home-icons">
+      <div id="like-btn-<%= @post.id %>">
+        <%= render 'likes/like', post: @post %>
+      </div>
+      <div class="comment-icon">
+        <%= link_to [@post], {class: "comment-a"} do %><i class="far fa-comment"></i><% end %>
+      </div>
+      <div class="post-delete">
+        <%= link_to post, method: :delete, class: "delete-icon-a",
+                                       data: { confirm: "You sure?" } do %>
+        <i class="far fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="post-content">
+      <%= @post.content %>
+    </div>
+    <span class="timestamp">
+      <%= time_ago_in_words(@post.created_at) %> ago.
+    </span>
+    <div id="comments_area">
+        <%= render partial: 'comments/index', locals: { comments: @comments } %>
+    </div>
+    <div class="comment-create">
+          <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+    </div>
+    

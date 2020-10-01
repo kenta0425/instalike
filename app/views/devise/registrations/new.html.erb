@@ -1,0 +1,31 @@
+<% provide(:title, "Sign up") %>
+<h1>Sign up</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+
+    <%= f.label :username %>
+    <%= f.text_field :username, autofocus: true, autocomplete: "username", class: 'form-control' %>
+
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    (<%= @minimum_password_length %> characters minimum)
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+
+  <%= link_to "Terms of Service", terms_path %>
+
+    <%= f.submit "Create my Account", class: "btn btn-primary" %>
+<% end %>
+
+ </div>
+</div>

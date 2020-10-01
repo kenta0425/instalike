@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+    <%= form_with(model: [@post, @comment], local: true) do |f| %>
+      <%= f.text_field :content, placeholder: "Add a comment...", class: "form-control", rows: 5 %>
+      <%= button_tag type: "submit", class: "btn btn-primary btn-sm" do %>
+        Post
+      <% end %>
+    <% end %>
+  <% end %>

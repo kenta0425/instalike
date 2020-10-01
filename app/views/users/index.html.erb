@@ -1,0 +1,10 @@
+<% provide(:title, 'All users') %>
+<h3 class="text-center">All users</h3>
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= gravatar_for user, size: 50 %>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
+</ul>

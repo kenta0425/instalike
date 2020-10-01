@@ -1,0 +1,20 @@
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "password", class: 'form-control' %>
+      
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+    
+    <p>New user? <%= link_to "Sign up now!", new_user_registration_path %></p>
+    
+  </div>
+</div>
